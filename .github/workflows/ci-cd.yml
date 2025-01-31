@@ -26,16 +26,17 @@ jobs:
           sudo apt update
           sudo apt install -y kotlin
 
-      - name: Install Quarkus CLI
+      - name: Install SDKMAN! and Quarkus
         run: |
-          curl -Ls https://sh.quarkus.io/install.sh | bash
-          echo "$HOME/.quarkus/bin" >> $GITHUB_PATH
+          curl -s "https://get.sdkman.io" | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install quarkus
           quarkus --version
 
       - name: Build the Project
         run: |
-          ./mvnw clean package -Dquarkus.package.type=uber-jar
+          mvn clean package -Dquarkus.package.type=uber-jar
 
       - name: Run Tests
         run: |
-          ./mvnw test
+          mvn test
