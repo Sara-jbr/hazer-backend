@@ -1,0 +1,41 @@
+name: CI/CD Pipeline for Hazer
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Install Kotlin
+        run: |
+          sudo apt update
+          sudo apt install -y kotlin
+
+      - name: Install Quarkus CLI
+        run: |
+          curl -Ls https://sh.quarkus.io/install.sh | bash
+          echo "$HOME/.quarkus/bin" >> $GITHUB_PATH
+          quarkus --version
+
+      - name: Build the Project
+        run: |
+          ./mvnw clean package -Dquarkus.package.type=uber-jar
+
+      - name: Run Tests
+        run: |
+          ./mvnw test
