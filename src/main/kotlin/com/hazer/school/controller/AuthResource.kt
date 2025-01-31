@@ -1,3 +1,5 @@
+package com.hazer.school.controller
+
 import io.quarkus.security.Authenticated
 import jakarta.inject.Inject
 import jakarta.ws.rs.GET

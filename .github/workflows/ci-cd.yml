@@ -1,12 +1,16 @@
-name: CI/CD Pipeline for Hazer
+name: CI/CD Pipeline for Hazer Project
 
 on:
   push:
     branches:
       - main
+      - 'feature/*'
+      - 'bugfix/*'
   pull_request:
     branches:
       - main
+      - 'feature/*'
+      - 'bugfix/*'
 
 jobs:
   build:
