@@ -2,9 +2,9 @@
 *.class
 
 # Ignore build directories
-build/
-out/
-target/
+# Ignore target folder (compiled classes and build artifacts)
+/target/
+/classes/
 
 # Ignore IntelliJ IDEA project files
 .idea/
