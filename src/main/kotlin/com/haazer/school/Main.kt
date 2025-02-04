@@ -1,4 +1,4 @@
-package com.hazer.school
+package com.haazer.school
 
 fun main(args: Array<String>) {
     println("Hello World!")

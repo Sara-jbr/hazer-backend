@@ -1,8 +1,8 @@
-package com.hazer.school.controller
+package com.haazer.school.controller
 
 
-import com.hazer.school.dto.UserDTO
-import com.hazer.school.service.UserService
+import com.haazer.school.dto.SchoolAdminDTO
+import com.haazer.school.service.SchoolAdminService
 import jakarta.enterprise.context.ApplicationScoped
 import jakarta.inject.Inject
 import jakarta.ws.rs.*
@@ -24,12 +24,12 @@ import java.net.http.HttpResponse
 class AuthResource {
 
     @Inject
-    lateinit var userService: UserService
+    lateinit var schoolAdminService: SchoolAdminService
 
     @ConfigProperty(name = "quarkus.oidc.auth-server-url")
     lateinit var keycloakUrl: String
 
-    private val logger: Logger = LoggerFactory.getLogger(UserService::class.java)
+    private val logger: Logger = LoggerFactory.getLogger(SchoolAdminService::class.java)
     @POST
     @Path("/login")
     @Consumes(MediaType.APPLICATION_FORM_URLENCODED) // Change this to support form data
@@ -59,8 +59,8 @@ class AuthResource {
     @POST
     @Path("/signup")
     @Consumes(MediaType.APPLICATION_JSON)
-    fun signUp(user: UserDTO): Response {
+    fun signUp(user: SchoolAdminDTO): Response {
        logger.info("user {}", user)
-        return userService.registerUser(user)
+        return schoolAdminService.registerUser(user)
     }
 }

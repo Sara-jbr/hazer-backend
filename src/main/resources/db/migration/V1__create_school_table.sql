@@ -1,0 +1,6 @@
+CREATE TABLE school (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    owner_id BIGINT NOT NULL,
+    FOREIGN KEY (owner_id) REFERENCES owner(id)
+);

@@ -1,10 +1,10 @@
-package com.hazer.school.dto
+package com.haazer.school.dto
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 
 
-data class UserDTO @JsonCreator constructor(
+data class SchoolAdminDTO @JsonCreator constructor(
     @JsonProperty("firstName") val firstName: String?,
     @JsonProperty("lastName") val lastName: String?,
     @JsonProperty("username") val username: String?,
