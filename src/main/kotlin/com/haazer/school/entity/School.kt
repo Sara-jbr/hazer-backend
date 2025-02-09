@@ -1,23 +1,61 @@
 package com.haazer.school.entity
 
+import com.fasterxml.jackson.annotation.JsonIgnore
+import com.fasterxml.jackson.annotation.JsonManagedReference
+import com.haazer.school.entity.enumeration.GradeLevel
+import com.haazer.school.entity.enumeration.SchoolType
 import jakarta.persistence.*
+import java.time.ZonedDateTime
 
 @Entity
-@Table(name = "school")
+@Table(name = "schools")
 open class School(
-
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     open val id: Long? = null,
 
-    open val name: String,
+    open var schoolName: String,
+    open var address: String,
+    open var contactNumber: String,
 
-    @ManyToOne
-    @JoinColumn(name = "owner_id")
-    open val owner: Owner
+    @Enumerated(EnumType.STRING)
+    open var schoolType: SchoolType,
+
+    @Enumerated(EnumType.STRING)
+    open var gradeLevel: GradeLevel,
+
+    @OneToMany(mappedBy = "school", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @JsonManagedReference
+    open var schedules: MutableList<Schedule> = mutableListOf(),
+
+    @ManyToOne(cascade = [CascadeType.ALL])
+    @JoinColumn(name = "owner_id", nullable = false)
+    @JsonIgnore
+    open var owner: Owner? = null,
+
+     open var createdAt: String?,
+
+    open var modifiedAt: String?,
 ) {
-
     constructor() : this(
-        name = "",
-        owner = Owner()
+        schoolName = "",
+        address = "",
+        contactNumber = "",
+        schoolType = SchoolType.مدرسه,
+        gradeLevel = GradeLevel.ابتدایی,
+        schedules = mutableListOf(),
+        owner = Owner(),
+        createdAt = null,
+        modifiedAt = null
     )
+
+    fun addSchedule(schedule: Schedule) {
+        schedules.add(schedule)
+        schedule.school = this
+    }
+
+    override fun toString(): String {
+        return "School(id=$id, schoolName='$schoolName', address='$address', " +
+                "contactNumber='$contactNumber', schoolType=$schoolType, gradeLevel=$gradeLevel, " +
+                "owner=$owner, schedules=${schedules.size})"
+    }
 }

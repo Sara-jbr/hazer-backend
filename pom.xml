@@ -26,6 +26,12 @@
     </dependencyManagement>
     <!-- Quarkus Hibernate ORM Extension for JPA -->
     <dependencies>
+
+        <dependency>
+            <groupId>io.quarkus</groupId>
+            <artifactId>quarkus-config-yaml</artifactId> <!-- For YAML support, if you use application.yml -->
+        </dependency>
+
         <!-- Quarkus Hibernate ORM Extension for JPA -->
         <dependency>
             <groupId>io.quarkus</groupId>
@@ -71,7 +77,7 @@
         <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>9.0.0</version> <!-- Make sure to match the version you're using -->
+            <version>9.0.0</version>
         </dependency>
         <!-- Quarkus Kotlin Support -->
         <dependency>
@@ -127,7 +133,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.30.Final</version>  <!-- Make sure the version is correct -->
+            <version>5.4.30.Final</version>
         </dependency>
 
 

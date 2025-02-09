@@ -1,12 +1,25 @@
 package com.haazer.school.dto
 
-import com.haazer.school.entity.School
-import com.haazer.school.entity.User
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonProperty
+import java.time.ZonedDateTime
 
-open class OwnerDTO(
+data class OwnerDTO @JsonCreator constructor(
 
-    open val id: Long? = null,
-    open val createdAt: String = "",
-    open val user: User = User(),
-    open val school: List<School> = listOf()
-)
+    @JsonProperty("id") val id: Long? = null,
+
+    @JsonProperty("firstName") val firstName: String?,
+
+    @JsonProperty("lastName") val lastName: String?,
+
+    @JsonProperty("userName") val userName: String?,
+
+    @JsonProperty("email") val email: String?,
+
+    @JsonProperty("password") val password: String?,
+
+    @JsonProperty("createdDate") var createdAt: ZonedDateTime?,
+
+    @JsonProperty("modifiedAt") var modifiedAt: ZonedDateTime?
+
+    )

@@ -1,6 +1,9 @@
 CREATE TABLE owner (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    createdAt VARCHAR(255) NOT NULL,
-    user_id BIGINT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user(id)
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    user_name VARCHAR(255) UNIQUE NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
