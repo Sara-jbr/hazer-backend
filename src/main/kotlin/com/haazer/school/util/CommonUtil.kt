@@ -1,7 +1,9 @@
 package com.haazer.school.util
 
+import ir.huri.jcal.JalaliCalendar
 import jakarta.enterprise.context.ApplicationScoped
 import java.time.LocalDate
+import java.time.Month
 import java.time.ZonedDateTime
 
 
@@ -9,13 +11,10 @@ import java.time.ZonedDateTime
 object CommonUtil {
 
     fun gregorianToJalali(gregorianDate: ZonedDateTime): String {
-        val gDate = LocalDate.of(gregorianDate.year, gregorianDate.monthValue, gregorianDate.dayOfMonth)
-        val baseJalaliYear = 1348
-        val diffYears = gDate.year - 1969
-        val jalaliYear = baseJalaliYear + diffYears
-
-        return "$jalaliYear/${gregorianDate.monthValue}/${gregorianDate.dayOfMonth} ${gregorianDate.hour}:${gregorianDate.minute}:${gregorianDate.second}"
+        val jalaliDate = JalaliCalendar(gregorianDate.toLocalDate())
+        return "${jalaliDate.year}/${jalaliDate.month}/${jalaliDate.day} " +
+                "${String.format("%02d", gregorianDate.hour)}:" +
+                "${String.format("%02d", gregorianDate.minute)}:" +
+                "${String.format("%02d", gregorianDate.second)}"
     }
-
-
 }

@@ -14,12 +14,21 @@ open class Owner @JsonCreator constructor(
     @JsonProperty("id") open val id: Long? = null,
 
     @JsonProperty("firstName") open var firstName: String?,
+
     @JsonProperty("lastName") open var lastName: String?,
-    @JsonProperty("userName") open var userName: String?,
-    @JsonProperty("email") open var email: String?,
+
+    @JsonProperty("userName")
+    @Column(unique = true, nullable = false)
+    open var userName: String?,
+
+    @JsonProperty("email")
+    @Column(unique = true, nullable = false)
+    open var email: String?,
+
     @JsonProperty("password") open var password: String?,
 
     @JsonProperty("createdAt") open var createdAt: String?,
+
     @JsonProperty("modifiedAt") open var modifiedAt: String?,
 
     @OneToMany(mappedBy = "owner", cascade = [CascadeType.ALL], orphanRemoval = true)

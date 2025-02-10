@@ -6,5 +6,15 @@ import jakarta.enterprise.context.ApplicationScoped
 
 
 @ApplicationScoped
-class OwnerRepository : PanacheRepository<Owner>
+class OwnerRepository : PanacheRepository<Owner> {
+    fun findByEmail(email: String): Owner? {
+        return find("email", email).firstResult()
+    }
+
+    fun findByEmailOrUsername(identifier: String): Owner? {
+        return find("email = ?1 or userName = ?1", identifier).firstResult()
+    }
+}
+
+
 

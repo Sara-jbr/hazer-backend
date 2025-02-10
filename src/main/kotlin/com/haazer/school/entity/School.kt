@@ -13,8 +13,11 @@ open class School(
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     open val id: Long? = null,
 
+    @Column(nullable = false, unique = true)
     open var schoolName: String,
+
     open var address: String,
+
     open var contactNumber: String,
 
     @Enumerated(EnumType.STRING)

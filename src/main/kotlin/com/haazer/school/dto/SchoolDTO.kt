@@ -17,6 +17,7 @@ data class SchoolDTO(
     @JsonProperty("schoolName") var schoolName: String,
 
     @JsonProperty("address") var address: String,
+
     @JsonProperty("contactNumber") var contactNumber: String,
 
     @JsonProperty("schoolType") var schoolType: SchoolType,

@@ -18,8 +18,8 @@ data class OwnerDTO @JsonCreator constructor(
 
     @JsonProperty("password") val password: String?,
 
-    @JsonProperty("createdDate") var createdAt: ZonedDateTime?,
+    @JsonProperty("createdAt") var createdAt: ZonedDateTime? = ZonedDateTime.now(),
 
-    @JsonProperty("modifiedAt") var modifiedAt: ZonedDateTime?
+    @JsonProperty("modifiedAt") var modifiedAt: ZonedDateTime? = ZonedDateTime.now(),
 
     )

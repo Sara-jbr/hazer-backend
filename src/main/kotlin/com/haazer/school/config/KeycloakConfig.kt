@@ -6,9 +6,6 @@ import jakarta.enterprise.context.ApplicationScoped
 @ApplicationScoped
 class KeycloakConfig {
 
-    @ConfigProperty(name = "quarkus.oidc.auth-server-url")
-    lateinit var authServerUrl: String
-
     @ConfigProperty(name = "quarkus.oidc.client-id")
     lateinit var clientId: String
 
@@ -29,5 +26,8 @@ class KeycloakConfig {
 
     @ConfigProperty(name = "keycloak.admin-url")
     lateinit var keycloakAdminUrl: String
+
+    @ConfigProperty(name = "quarkus.oidc.token-path-master")
+    lateinit var tokenPathMaster: String
 
 }

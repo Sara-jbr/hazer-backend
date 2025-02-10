@@ -35,17 +35,13 @@ class SchoolServiceImpl : SchoolService {
 
         logger.info("createSchool - Owner: {}, School: {}", ownerId, schoolDTO)
 
-        val createdAtJalali = schoolDTO.createdAt?.let {
-            CommonUtil.gregorianToJalali(it) // Converts to Jalali date as a String
-        }
-        // Create the school entity
         val saveSchool = School(
             schoolName = schoolDTO.schoolName,
             address = schoolDTO.address,
             contactNumber = schoolDTO.contactNumber,
             schoolType = SchoolType.مدرسه,
             gradeLevel = GradeLevel.ابتدایی,
-            createdAt = createdAtJalali,  // This should be a String representing Jalali date
+            createdAt = CommonUtil.gregorianToJalali(ZonedDateTime.now()),
             modifiedAt = null
         )
 
@@ -95,15 +91,11 @@ class SchoolServiceImpl : SchoolService {
 
         logger.info("updateSchool - Updating School ID: {}, New Data: {}", id, school)
 
-        val createdAtJalali = school.createdAt?.let {
-            CommonUtil.gregorianToJalali(it) // Converts to Jalali date as a String
-        }
-        // Update basic fields
         existingSchool.schoolName = school.schoolName
         existingSchool.address = school.address
         existingSchool.contactNumber = school.contactNumber
-        existingSchool.modifiedAt = createdAtJalali
-
+        existingSchool.modifiedAt = CommonUtil.gregorianToJalali(ZonedDateTime.now())
+        existingSchool.createdAt = existingSchool.createdAt
 
         existingSchool.schoolType = try {
             SchoolType.valueOf(school.schoolType.toString())

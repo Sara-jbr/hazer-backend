@@ -77,19 +77,20 @@ class SchoolResource {
         }
     }
 
-        @PUT
-        @Path("/schools/{id}")
-        fun updateSchool(
-            @PathParam("id") id: Long, school: SchoolDTO): Response {
-            logger.info("REST request to update school with id {}: {}", id, school)
-            return try {
-                val updated = schoolService.updateSchool(id, school)
-                Response.ok(updated).build()
-            } catch (e: Exception) {
-                Response.status(Response.Status.BAD_REQUEST)
-                    .entity(mapOf("error" to e.message))
-                    .build()
-            }
+    @PUT
+    @Path("/schools/{id}")
+    fun updateSchool(
+        @PathParam("id") id: Long, school: SchoolDTO
+    ): Response {
+        logger.info("REST request to update school with id {}: {}", id, school)
+        return try {
+            val updated = schoolService.updateSchool(id, school)
+            Response.ok(updated).build()
+        } catch (e: Exception) {
+            Response.status(Response.Status.BAD_REQUEST)
+                .entity(mapOf("error" to e.message))
+                .build()
         }
     }
+}
 
