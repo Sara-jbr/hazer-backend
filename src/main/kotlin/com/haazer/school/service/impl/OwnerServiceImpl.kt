@@ -37,7 +37,7 @@ class OwnerServiceImpl : OwnerService {
 
             val existingOwner = ownerDTO.email?.let { ownerRepository.findByEmail(it) }
             if (existingOwner != null) {
-                throw RuntimeException("User with email ${ownerDTO.email} already exists")
+                throw RuntimeException(" قبلاً ثبت نام کرده است${ownerDTO.email}کاربری با این ایمیل ")
             }
 
 
@@ -60,7 +60,7 @@ class OwnerServiceImpl : OwnerService {
 
             val adminToken = getAdminToken()
             if (adminToken.isEmpty()) {
-                throw RuntimeException("Failed to retrieve admin token from Keycloak")
+                throw RuntimeException("امکان دریافت توکن ادمین از کی‌کلاک وجود ندارد. لطفاً تنظیمات را بررسی کنید.")
             }
 
 
@@ -107,7 +107,7 @@ class OwnerServiceImpl : OwnerService {
 
         } catch (ex: Exception) {
             logger.error("Error during user registration: ${ex.message}", ex)
-            throw RuntimeException("Registration failed: ${ex.message}")
+            throw RuntimeException("ثبت نام کاربر با خطا مواجه شد:${ex.message} ")
         }
     }
 
@@ -133,13 +133,13 @@ class OwnerServiceImpl : OwnerService {
     override fun login(username: String, password: String): Response {
         val existingUser = ownerRepository.findByEmailOrUsername(username)
             ?: return Response.status(Response.Status.UNAUTHORIZED)
-                .entity("Invalid username or email")
+                .entity("نام کاربری یا ایمیل وارد شده معتبر نیست.")
                 .build()
 
         // If user doesn't exist, return an error response
         if (existingUser.password != password) {
             return Response.status(Response.Status.UNAUTHORIZED)
-                .entity("Incorrect password")
+                .entity("رمز عبور وارد شده اشتباه است.")
                 .build()
         }
         val requestBody =

@@ -62,7 +62,8 @@ class SchoolServiceImpl : SchoolService {
         schoolRepository.flush()
 
 
-        logger.info("School saved successfully: {}", saveSchool)
+        logger.info(".{}: مدرسه با موفقیت ذخیره شد", saveSchool)
+
 
         return saveSchool
     }
@@ -100,14 +101,15 @@ class SchoolServiceImpl : SchoolService {
         existingSchool.schoolType = try {
             SchoolType.valueOf(school.schoolType.toString())
         } catch (e: IllegalArgumentException) {
-            throw Exception("Invalid school type")
+            throw Exception("نوع مدرسه نامعتبر است")
+
         }
 
 
         existingSchool.gradeLevel = try {
             GradeLevel.valueOf(school.gradeLevel.toString())
         } catch (e: IllegalArgumentException) {
-            throw Exception("Invalid grade level")
+            throw Exception("مقطع تحصیلی نامعتبر است")
         }
 
 
@@ -124,7 +126,7 @@ class SchoolServiceImpl : SchoolService {
         schoolRepository.persist(existingSchool)
         schoolRepository.flush()
 
-        logger.info("School updated successfully: {}", existingSchool)
+        logger.info(" {}: مدرسه با موفقیت ذخیره شد.", existingSchool)
 
         return existingSchool
     }
