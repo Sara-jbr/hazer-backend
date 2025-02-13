@@ -8,7 +8,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: haazer_db
-      MYSQL_USER: hazer-user
       MYSQL_PASSWORD: 1234
     ports:
       - "3306:3306"
@@ -16,7 +15,7 @@ services:
       - mysql_data:/var/lib/mysql  # Refers to the volume below
 
   keycloak:
-    image: jboss/keycloak:25.0.0
+    image: quay.io/keycloak/keycloak
     container_name: keycloak
     ports:
       - "8080:8080"
