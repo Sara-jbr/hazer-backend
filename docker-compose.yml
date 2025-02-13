@@ -1,0 +1,54 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: haazer_db
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 1234
+    ports:
+      - "3306:3306"
+    networks:
+      - quarkus-network
+
+  keycloak:
+    image: jboss/keycloak:latest
+    environment:
+      DB_VENDOR: mysql
+      DB_ADDR: mysql
+      DB_DATABASE: haazer_db
+      DB_USER: root
+      DB_PASSWORD: 1234
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: admin
+    ports:
+      - "8180:8080"
+    depends_on:
+      - mysql
+    networks:
+      - quarkus-network
+
+  quarkus-app:
+    image: hamid842/hazer-app:1.0.0-SNAPSHOT
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      QUARKUS_DATASOURCE_JDBC_URL: jdbc:mysql://mysql:3306/haazer_db
+      QUARKUS_DATASOURCE_USERNAME: root
+      QUARKUS_DATASOURCE_PASSWORD: 1234
+      QUARKUS_OIDC_AUTH_SERVER_URL: http://keycloak:8080/auth/realms/haazer-realm
+      QUARKUS_OIDC_CLIENT_ID: haazer-app
+      QUARKUS_OIDC_CREDENTIALS_SECRET: 7xbrkI3bu9cyV4nDjlHKKezYUMK0aQUp
+    depends_on:
+      - mysql
+      - keycloak
+    networks:
+      - quarkus-network
+
+networks:
+  quarkus-network:
+    driver: bridge
