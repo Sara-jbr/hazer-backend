@@ -15,13 +15,15 @@ services:
       - mysql_data:/var/lib/mysql  # Refers to the volume below
 
   keycloak:
-    image: quay.io/keycloak/keycloak:latest
+    image: jboss/keycloak:25.0.0
     container_name: keycloak
     ports:
       - "8080:8080"
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
+      - KC_HTTP_ENABLED=true  # 👈 This allows HTTP
+      - KC_PROXY=edge  # 👈 Necessary if behind a reverse proxy
     command: start-dev
 
 volumes:
