@@ -15,7 +15,7 @@ services:
       - mysql_data:/var/lib/mysql  # Refers to the volume below
 
   keycloak:
-    image: quay.io/keycloak/keycloak:22.0.5
+    image: quay.io/keycloak/keycloak:25.0.0
     container_name: keycloak
     ports:
       - "8080:8080"
