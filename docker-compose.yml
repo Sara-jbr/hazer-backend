@@ -6,11 +6,12 @@ services:
     container_name: mysql
     restart: always
     environment:
+      MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: haazer_db
-      MYSQL_USER: root
+      MYSQL_USER: hazer-user
       MYSQL_PASSWORD: 1234
     ports:
-      - "3307:3306"
+      - "3306:3306"
     volumes:
       - mysql_data:/var/lib/mysql  # Refers to the volume below
 
