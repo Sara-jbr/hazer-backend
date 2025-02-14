@@ -10,7 +10,7 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: 1234
     ports:
-      - "3306:3306"
+      - "3307:3306"
     volumes:
       - mysql_data:/var/lib/mysql  # Refers to the volume below
 
@@ -22,7 +22,7 @@ services:
     environment:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
-    command: start-dev
+    command: start-dev --http-enabled=true --https-required=none
 
 volumes:
   mysql_data:
