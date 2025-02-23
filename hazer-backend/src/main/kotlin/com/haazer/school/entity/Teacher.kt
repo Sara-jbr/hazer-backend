@@ -23,7 +23,7 @@ open class Teacher(
     @OneToMany(mappedBy = "teacher", cascade = [CascadeType.ALL])
     open var classRooms: MutableList<ClassRoom> = mutableListOf(),
 
-    @ManyToMany(mappedBy = "teacher", cascade = [CascadeType.ALL])
+    @ManyToMany(mappedBy = "teachers", cascade = [CascadeType.ALL])
     open var students: MutableList<Student> = mutableListOf(),
 
     open var createdAt: String?,

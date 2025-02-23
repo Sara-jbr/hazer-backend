@@ -2,6 +2,7 @@ package com.haazer.school.entity
 
 import jakarta.persistence.*
 
+
 @Entity
 @Table(name = "classRoom")
 open class ClassRoom(
@@ -12,8 +13,7 @@ open class ClassRoom(
     open var className: String,
 
     @ManyToOne
-    @JoinColumn(name = "teacher_id")
-    @Column(nullable = false)
+    @JoinColumn(name = "teacher_id", nullable = false) // Set nullable here instead
     open var teacher: Teacher? = null,
 
     @ManyToMany(mappedBy = "classRooms", cascade = [CascadeType.ALL])
