@@ -1,7 +1,6 @@
 package com.haazer.school.service.impl
 
 import com.haazer.school.dto.SchoolDTO
-import com.haazer.school.entity.Owner
 import com.haazer.school.entity.Schedule
 import com.haazer.school.entity.School
 import com.haazer.school.entity.enumeration.GradeLevel

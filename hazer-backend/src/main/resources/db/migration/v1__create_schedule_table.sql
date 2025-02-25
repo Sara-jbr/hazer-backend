@@ -1,7 +1,0 @@
-CREATE TABLE schedule (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    startTime VARCHAR(255) NOT NULL,
-    endTime VARCHAR(255) NOT NULL,
-    school_id BIGINT NOT NULL,
-    FOREIGN KEY (school_id) REFERENCES schools(id) ON DELETE CASCADE
-);

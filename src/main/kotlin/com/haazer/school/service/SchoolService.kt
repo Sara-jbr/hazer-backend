@@ -13,5 +13,5 @@ interface SchoolService {
     fun getSchoolById(id: Long): School?
     fun deleteSchool(id: Long): Boolean
     fun updateSchool(id: Long, school : SchoolDTO): School
-    fun createSchool(ownerId: Long, school: SchoolDTO): School
+    fun createSchool(ownerId: Long, schoolDTO: SchoolDTO): School
 }
