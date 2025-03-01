@@ -31,7 +31,7 @@ open class Owner @JsonCreator constructor(
 
     @JsonProperty("modifiedAt") open var modifiedAt: String?,
 
-    @OneToMany(mappedBy = "owner", cascade = [CascadeType.ALL], orphanRemoval = true)
+    @OneToMany(mappedBy = "owner", cascade = [CascadeType.ALL], orphanRemoval = true,fetch = FetchType.EAGER)
     @JsonProperty("schools") open val schools: MutableList<School> = mutableListOf()
 
 ) {

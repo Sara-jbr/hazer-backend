@@ -26,8 +26,8 @@ open class School(
     @Enumerated(EnumType.STRING)
     open var gradeLevel: GradeLevel,
 
-    @OneToMany(mappedBy = "school", cascade = [CascadeType.ALL], orphanRemoval = true)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "school", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore // Prevents infinite recursion
     open var schedules: MutableList<Schedule> = mutableListOf(),
 
     @ManyToOne(cascade = [CascadeType.ALL])

@@ -38,8 +38,8 @@ class SchoolServiceImpl : SchoolService {
             schoolName = schoolDTO.schoolName,
             address = schoolDTO.address,
             contactNumber = schoolDTO.contactNumber,
-            schoolType = SchoolType.مدرسه,
-            gradeLevel = GradeLevel.ابتدایی,
+            schoolType = schoolDTO.schoolType,
+            gradeLevel = schoolDTO.gradeLevel,
             createdAt = CommonUtil.gregorianToJalali(ZonedDateTime.now()),
             modifiedAt = null
         )
@@ -116,8 +116,8 @@ class SchoolServiceImpl : SchoolService {
         school.schedules.forEach { scheduleDto ->
             val schedule = Schedule(
                 startTime = scheduleDto.startTime,
-                endTime = scheduleDto.endTime,
-                school = existingSchool
+                endTime = scheduleDto.endTime
+                //school = existingSchool
             )
             existingSchool.schedules.add(schedule)
         }

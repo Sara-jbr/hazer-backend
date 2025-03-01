@@ -1,6 +1,7 @@
 package com.haazer.school.entity
 
 import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 
 @Entity
@@ -13,17 +14,17 @@ open class Schedule(
     open var endTime: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "school_id")
-    @JsonBackReference
+    @JoinColumn(name = "school_id" )
+    @JsonIgnore
     open var school: School? = null
 ) {
     constructor() : this(
         startTime = "",
         endTime = "",
-        school = School()
+        school = null  // Ensure this is null to avoid unnecessary object creation
     )
 
     override fun toString(): String {
-        return "Schedule(id=$id, startTime='$startTime', endTime='$endTime', schoolId=${school?.id})"
+        return "Schedule(id=$id, startTime='$startTime', endTime='$endTime')"
     }
 }
