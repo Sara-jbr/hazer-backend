@@ -39,7 +39,7 @@ class OwnerResource {
     }
 
     @POST
-    @Path("/owners/register")
+    @Path("/owner/register")
     @Consumes(MediaType.APPLICATION_JSON)
     fun register(ownerDTO: OwnerDTO): Response {
         logger.info("REST request to register owner {} :", ownerDTO)

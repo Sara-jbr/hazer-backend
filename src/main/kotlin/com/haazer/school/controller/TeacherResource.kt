@@ -23,7 +23,6 @@ class TeacherResource {
     private val logger: Logger = LoggerFactory.getLogger(TeacherResource::class.java)
 
     @POST
-    @Path("/create")
     fun createTeacher(teacher: TeacherDTO): Response {
         logger.info("REST request to create a teacher: {}", teacher)
 
@@ -34,7 +33,6 @@ class TeacherResource {
     }
 
     @GET
-    @Path("/")
     fun getAllTeachers(): Response {
         logger.info("REST request to get all teachers")
         val teachers = teacherService.getAllTeachers()

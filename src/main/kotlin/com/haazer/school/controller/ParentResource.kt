@@ -24,7 +24,6 @@ class ParentResource {
     private val logger: Logger = LoggerFactory.getLogger(ParentResource::class.java)
 
     @POST
-    @Path("/create")
     fun createParent(parent: ParentDTO): Response {
         logger.info("REST request to create a parent: {}", parent)
 
@@ -35,7 +34,6 @@ class ParentResource {
     }
 
     @GET
-    @Path("/")
     fun getAllParents(): Response {
         logger.info("REST request to get all parents")
         val parents = parentService.getAllParents()
@@ -88,7 +86,7 @@ class ParentResource {
         }
     }
     @POST
-    @Path("{parentId}/assign-student/{studentId}")
+    @Path("/{parentId}/assign-student/{studentId}")
     fun assignStudentToParent(
         @PathParam("parentId") parentId: Long,
         @PathParam("studentId") studentId: Long

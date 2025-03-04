@@ -13,7 +13,7 @@ import org.slf4j.LoggerFactory
 import java.net.URI
 
 
-@Path("api")
+@Path("api/schools")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
@@ -25,7 +25,7 @@ class SchoolResource {
     private val logger: Logger = LoggerFactory.getLogger(SchoolResource::class.java)
 
     @POST
-    @Path("/schools/create/{ownerId}")
+    @Path("/{ownerId}")
     fun createSchool(@PathParam("ownerId") ownerId: Long, school: SchoolDTO): Response {
         logger.info("REST request to create a school by ownerId {}, {} :", ownerId, school)
 
@@ -37,7 +37,6 @@ class SchoolResource {
 
 
     @GET
-    @Path("/schools")
     fun getAllSchools(): Response {
         logger.info("REST request to get all schools")
         val schools = schoolService.getAllSchools()
@@ -50,7 +49,7 @@ class SchoolResource {
 
 
     @GET
-    @Path("/schools/{id}")
+    @Path("/{id}")
     fun getSchoolById(@PathParam("id") id: Long): Response {
         logger.info("REST request to get school with id {} :", id)
         val school = schoolService.getSchoolById(id)
@@ -64,7 +63,7 @@ class SchoolResource {
     }
 
     @DELETE
-    @Path("/schools/{id}")
+    @Path("/{id}")
     fun deleteSchool(@PathParam("id") id: Long): Response {
         logger.info("REST request to delete school with id {} :", id)
         val deleted = schoolService.deleteSchool(id)
@@ -78,7 +77,7 @@ class SchoolResource {
     }
 
     @PUT
-    @Path("/schools/{id}")
+    @Path("/{id}")
     fun updateSchool(
         @PathParam("id") id: Long, school: SchoolDTO
     ): Response {
