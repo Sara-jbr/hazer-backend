@@ -30,13 +30,11 @@ open class Student @JsonCreator constructor(
     @Enumerated(EnumType.STRING)
     open var grade: GradeLevel,
 
-//    @ManyToMany
-//    @JoinTable(
-//        name = "student_parent",
-//        joinColumns = [JoinColumn(name = "student_id")],
-//        inverseJoinColumns = [JoinColumn(name = "parent_id")]
-//    )
-//    open var parents: MutableList<Parent> = mutableListOf(),
+    @ManyToMany(mappedBy = "students")
+    open var parents: MutableList<Parent> = mutableListOf(),
+
+    @ManyToMany(mappedBy = "students")
+    open var classrooms: MutableList<ClassRoom> = mutableListOf(),
 
     @JsonProperty("createdAt")
     open var createdAt: String?,
@@ -51,7 +49,7 @@ open class Student @JsonCreator constructor(
         studentNo = "",
         email = "",
         grade = GradeLevel.ابتدایی,
-//        parents = mutableListOf(),
+        parents = mutableListOf(),
         createdAt = null,
         modifiedAt = null
     )
@@ -62,7 +60,7 @@ open class Student @JsonCreator constructor(
         studentNo: String,
         email: String,
         grade: String, // This is a String that will be converted to GradeLevel enum
-//        parents: List<Parent>? = null,
+        parents: List<Parent>? = null,
         createdAt: String,  // Default to current time if not provided
         modifiedAt: String // Default to current time if not provided
     ) : this(
@@ -72,10 +70,13 @@ open class Student @JsonCreator constructor(
         studentNo = studentNo,
         email = email,
         grade = GradeLevel.valueOf(grade),  // Convert String to enum here
-//        parents = parents?.toMutableList() ?: mutableListOf(),
+        parents = parents?.toMutableList() ?: mutableListOf(),
         createdAt = createdAt,
         modifiedAt = modifiedAt
     )
 
+    override fun toString(): String {
+        return "Student(id=$id, firstName=$firstName, lastName=$lastName, studentNo='$studentNo', email=$email, grade=$grade, parents=$parents, classrooms=$classrooms, createdAt=$createdAt, modifiedAt=$modifiedAt)"
+    }
 
 }

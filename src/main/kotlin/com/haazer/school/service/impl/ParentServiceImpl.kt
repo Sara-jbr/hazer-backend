@@ -3,6 +3,7 @@ package com.haazer.school.service.impl
 import com.haazer.school.dto.ParentDTO
 import com.haazer.school.entity.Parent
 import com.haazer.school.repository.ParentRepository
+import com.haazer.school.repository.StudentRepository
 import com.haazer.school.service.ParentService
 import com.haazer.school.util.CommonUtil
 import jakarta.enterprise.context.ApplicationScoped
@@ -19,6 +20,10 @@ class ParentServiceImpl : ParentService {
 
     @Inject
     lateinit var parentRepository: ParentRepository
+
+
+    @Inject
+    lateinit var studentRepository: StudentRepository
 
     @Transactional
     override fun createParent(parentDTO: ParentDTO): Parent {
@@ -79,4 +84,21 @@ class ParentServiceImpl : ParentService {
         logger.info(".{}: والد با موفقیت ذخیره شد", existingParent)
         return existingParent
     }
+
+    @Transactional
+   override fun assignStudentToParent(studentId: Long, parentId: Long) {
+        val student = studentRepository.findById(studentId)  ?: throw Exception("student not found")
+        val parent = parentRepository.findById(parentId)  ?: throw Exception("parent not found")
+
+
+       if (!student.parents.contains(parent)) {
+           student.parents.add(parent)
+       }
+       if (!parent.students.contains(student)) {
+           parent.students.add(student)
+       }
+
+       parentRepository.persist(parent)
+
+       }
 }

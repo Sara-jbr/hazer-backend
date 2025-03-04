@@ -88,4 +88,25 @@ class ClassRoomResource {
                 .build()
         }
     }
+
+    @POST
+    @Path("{classroomId}/assign-student/{studentId}")
+    fun assignStudentToClassroom(
+        @PathParam("classroomId")classroomId: Long,
+        @PathParam("studentId") studentId: Long
+
+    ) {
+        classRoomService.assignStudentToClassroom(classroomId, studentId)
+    }
+
+    @POST
+    @Path("{classroomId}/assign-teacher/{teacherId}")
+    fun assignTeacherToClassroom(
+        @PathParam("classroomId")classroomId: Long,
+        @PathParam("teacherId") teacherId: Long
+
+    ) {
+        classRoomService.assignTeacherToClassroom(classroomId, teacherId)
+    }
 }
+

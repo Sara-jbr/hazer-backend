@@ -12,4 +12,6 @@ interface ClassRoomService {
     fun deleteClassRoom(id: Long): Boolean
     fun updateClassRoom(id: Long, classRoomDTO: ClassRoomDTO): ClassRoom
     fun createClassRoom(classRoom: ClassRoomDTO): ClassRoom
+    fun assignTeacherToClassroom(classroomId: Long, teacherId: Long)
+    fun assignStudentToClassroom(classroomId: Long, studentId: Long)
 }

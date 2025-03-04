@@ -87,4 +87,13 @@ class ParentResource {
                 .build()
         }
     }
+    @POST
+    @Path("{parentId}/assign-student/{studentId}")
+    fun assignStudentToParent(
+        @PathParam("parentId") parentId: Long,
+        @PathParam("studentId") studentId: Long
+
+    ) {
+        parentService.assignStudentToParent(studentId, parentId)
+    }
 }

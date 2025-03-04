@@ -12,4 +12,5 @@ interface ParentService {
     fun deleteParent(id: Long): Boolean
     fun updateParent(id: Long, parent: ParentDTO): Parent
     fun createParent(parent: ParentDTO): Parent
+    fun assignStudentToParent(studentId: Long, parentId: Long)
 }

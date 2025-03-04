@@ -23,6 +23,7 @@ class ClassRoomServiceImpl : ClassRoomService {
 
     @Inject
     lateinit var classRoomRepository: ClassRoomRepository
+
     @Inject
     lateinit var teacherRepository: TeacherRepository
 
@@ -32,18 +33,11 @@ class ClassRoomServiceImpl : ClassRoomService {
 
     @Transactional
     override fun createClassRoom(classRoomDTO: ClassRoomDTO): ClassRoom {
-//        val teacher = classRoomDTO.teacher?.id?.let {
-//            teacherRepository.findById(it) ?: throw NotFoundException("Teacher not found")
-//        } ?: throw NotFoundException("Teacher not found")
-//
-//        val students = classRoomDTO.students.takeIf { it.isNotEmpty() }?.mapNotNull {
-//            it.id?.let { it1 -> studentRepository.findById(it1) } ?: throw NotFoundException("Student with ID ${it.id} not found")
-//        } ?: throw NotFoundException("No students found")
 
         val classroom = ClassRoom(
             className = classRoomDTO.className,
-//            teacher = teacher,
-//            students = students.toMutableList(),
+            teacher = null,
+            students = null,
             createdAt = CommonUtil.gregorianToJalali(ZonedDateTime.now()),
             modifiedAt = null
         )
@@ -85,5 +79,26 @@ class ClassRoomServiceImpl : ClassRoomService {
 
         logger.info(".{}: کلاس با موفقیت ذخیره شد", existingClassRoom)
         return existingClassRoom
+    }
+
+    @Transactional
+    override fun assignStudentToClassroom(classroomId: Long, studentId: Long) {
+        val classroom = classRoomRepository.findById(classroomId) ?: throw Exception("class not found")
+        val student = studentRepository.findById(studentId) ?: throw Exception("student not found")
+
+        classroom.students?.add(student)
+        student.classrooms.add(classroom)
+
+        classRoomRepository.persist(classroom)
+        studentRepository.persist(student)
+    }
+    @Transactional
+    override fun assignTeacherToClassroom(classroomId: Long, teacherId: Long) {
+        val classroom = classRoomRepository.findById(classroomId)?: throw Exception("class not found")
+        val teacher = teacherRepository.findById(teacherId)?: throw Exception("teacher not found")
+
+        classroom.teacher = teacher
+
+        classRoomRepository.persist(classroom)
     }
 }

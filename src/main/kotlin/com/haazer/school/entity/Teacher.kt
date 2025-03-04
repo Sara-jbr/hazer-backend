@@ -18,7 +18,7 @@ open class Teacher(
     @Column(unique = true, nullable = false)
     open var email: String?,
 
-    open var field: String,
+    open var field: String?,
 
     open var createdAt: String?,
 

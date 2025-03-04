@@ -16,7 +16,9 @@ class TeacherDTO(
 
     @JsonProperty("email") var email: String?,
 
-    @JsonProperty("field") var field: String,
+    @JsonProperty("field") var field: String?,
+
+//    @JsonProperty("classRooms") var classRooms: MutableList<ClassRoom> = mutableListOf(),
 
     @JsonProperty("createdAt") var createdAt: ZonedDateTime?,
 

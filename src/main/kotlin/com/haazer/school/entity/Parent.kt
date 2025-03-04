@@ -29,7 +29,16 @@ open class Parent @JsonCreator constructor(
 
     @JsonProperty("createdAt") open var createdAt: String?,
 
-    @JsonProperty("modifiedAt") open var modifiedAt: String?
+    @JsonProperty("modifiedAt") open var modifiedAt: String?,
+
+    @ManyToMany(cascade = [CascadeType.PERSIST])
+    @JoinTable(
+        name = "student_parent",
+        joinColumns = [JoinColumn(name = "parent_id")], // Parent's ID should be here
+        inverseJoinColumns = [JoinColumn(name = "student_id")] // Student's ID should be here
+    )
+    open var students: MutableList<Student> = mutableListOf()
+
 ) {
     // No-argument constructor for Hibernate and Jackson deserialization
     constructor() : this(
@@ -64,4 +73,10 @@ open class Parent @JsonCreator constructor(
         createdAt = createdAt,
         modifiedAt = modifiedAt
     )
+
+    override fun toString(): String {
+        return "Parent(id=$id, firstName=$firstName, lastName=$lastName, email=$email, address='$address', phoneNumber='$phoneNumber', mobileNumber='$mobileNumber', createdAt=$createdAt, modifiedAt=$modifiedAt, students=$students)"
+    }
+
+
 }

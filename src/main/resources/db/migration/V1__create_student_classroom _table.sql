@@ -1,8 +1,7 @@
--- Create Table: student_classroom (Many-to-Many)
-CREATE TABLE student_classroom (
-    student_id BIGINT NOT NULL,
+CREATE TABLE classroom_student (
     classroom_id BIGINT NOT NULL,
-    PRIMARY KEY (student_id, classroom_id),
-    CONSTRAINT fk_student_classroom_student FOREIGN KEY (student_id) REFERENCES student(id) ON DELETE CASCADE,
-    CONSTRAINT fk_student_classroom_classroom FOREIGN KEY (classroom_id) REFERENCES classroom(id) ON DELETE CASCADE
+    student_id BIGINT NOT NULL,
+    PRIMARY KEY (classroom_id, student_id),
+    FOREIGN KEY (classroom_id) REFERENCES classrooms (id) ON DELETE CASCADE,
+    FOREIGN KEY (student_id) REFERENCES students (id) ON DELETE CASCADE
 );
