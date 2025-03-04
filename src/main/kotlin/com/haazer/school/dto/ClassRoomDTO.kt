@@ -13,9 +13,9 @@ open class ClassRoomDTO(
 
     @JsonProperty("className") var className: String,
 
-    @JsonProperty("teacher") var teacher: Teacher? = null,
-
-    @JsonProperty("students") var students: MutableList<Student> = mutableListOf(),
+//    @JsonProperty("teacher") var teacher: Teacher? = null,
+//
+//    @JsonProperty("students") var students: MutableList<Student> = mutableListOf(),
 
     @JsonProperty("createdAt") var createdAt: ZonedDateTime?,
 

@@ -197,6 +197,7 @@ class OwnerServiceImpl : OwnerService {
             modifiedAt = CommonUtil.gregorianToJalali(ZonedDateTime.now())
         }
 
+        logger.info(".{}: مدیر با موفقیت ذخیره شد", existingOwner)
         ownerRepository.persist(existingOwner)
         return existingOwner
     }

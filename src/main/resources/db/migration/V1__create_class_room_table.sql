@@ -1,8 +1,8 @@
-CREATE TABLE classroom (
+CREATE TABLE classrooms (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     class_name VARCHAR(255) NOT NULL,
-    teacher_id BIGINT NOT NULL,
-    created_at TIMESTAMP NULL,
-    modified_at TIMESTAMP NULL,
-    CONSTRAINT fk_classroom_teacher FOREIGN KEY (teacher_id) REFERENCES teacher(id) ON DELETE CASCADE
+--    teacher_id BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (teacher_id) REFERENCES teachers (id) ON DELETE CASCADE
 );

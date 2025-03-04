@@ -28,10 +28,9 @@ class ParentServiceImpl : ParentService {
             firstName = parentDTO.firstName,
             lastName = parentDTO.lastName,
             email = parentDTO.email,
-            address = CommonUtil.gregorianToJalali(ZonedDateTime.now()),
+            address = parentDTO.address,
             phoneNumber = parentDTO.phoneNumber,
             mobileNumber = parentDTO.mobileNumber,
-            students = mutableListOf(),
             createdAt = CommonUtil.gregorianToJalali(ZonedDateTime.now()),
             modifiedAt = null
         )
@@ -39,7 +38,7 @@ class ParentServiceImpl : ParentService {
         parentRepository.persist(parent)
         parentRepository.flush()
 
-        logger.info("Parent {}: created successfully.", parent)
+        logger.info(".{}: والد با موفقیت ذخیره شد", parent)
         return parent
     }
 
@@ -73,12 +72,11 @@ class ParentServiceImpl : ParentService {
         existingParent.address = existingParent.address
         existingParent.mobileNumber = existingParent.mobileNumber
         existingParent.phoneNumber = existingParent.phoneNumber
-        existingParent.students = existingParent.students
 
         parentRepository.persist(existingParent)
         parentRepository.flush()
 
-        logger.info("Parent {}: updated successfully.", existingParent)
+        logger.info(".{}: والد با موفقیت ذخیره شد", existingParent)
         return existingParent
     }
 }

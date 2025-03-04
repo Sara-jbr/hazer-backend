@@ -32,8 +32,6 @@ class TeacherServiceImpl : TeacherService {
             lastName = teacherDTO.lastName,
             email = teacherDTO.email,
             field = teacherDTO.field,
-            classRooms = teacherDTO.classRooms,
-            students = teacherDTO.students,
             createdAt = CommonUtil.gregorianToJalali(ZonedDateTime.now()),
             modifiedAt = null
         )
@@ -41,7 +39,7 @@ class TeacherServiceImpl : TeacherService {
         teacherRepository.persist(teacher)
         teacherRepository.flush()
 
-        logger.info("Teacher {}: created successfully.", teacher)
+        logger.info(".{}: معلم با موفقیت ذخیره شد", teacher)
         return teacher
     }
 
@@ -69,17 +67,15 @@ class TeacherServiceImpl : TeacherService {
 
         existingTeacher.firstName = teacherDTO.firstName
         existingTeacher.lastName = teacherDTO.lastName
-        existingTeacher.classRooms = teacherDTO.classRooms
-        existingTeacher.email = teacherDTO.email
+         existingTeacher.email = teacherDTO.email
         existingTeacher.field = teacherDTO.field
-        existingTeacher.createdAt = existingTeacher.createdAt
-        existingTeacher.students = teacherDTO.students
+         existingTeacher.createdAt = existingTeacher.createdAt
         existingTeacher.modifiedAt = CommonUtil.gregorianToJalali(ZonedDateTime.now())
 
         teacherRepository.persist(existingTeacher)
         teacherRepository.flush()
 
-        logger.info("Teacher {}: updated successfully.", existingTeacher)
+        logger.info(".{}: معلم با موفقیت ذخیره شد", existingTeacher)
         return existingTeacher
     }
 }

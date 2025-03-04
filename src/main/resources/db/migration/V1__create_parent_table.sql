@@ -1,11 +1,11 @@
-CREATE TABLE parent (
+CREATE TABLE parents (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    address VARCHAR(255),
-    phone_number VARCHAR(20),
-    mobile_number VARCHAR(20),
-    created_at TIMESTAMP NULL,
-    modified_at TIMESTAMP NULL
+    address TEXT,
+    phone_number VARCHAR(20) NOT NULL,
+    mobile_number VARCHAR(20) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

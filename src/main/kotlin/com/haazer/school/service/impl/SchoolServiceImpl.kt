@@ -117,7 +117,6 @@ class SchoolServiceImpl : SchoolService {
             val schedule = Schedule(
                 startTime = scheduleDto.startTime,
                 endTime = scheduleDto.endTime
-                //school = existingSchool
             )
             existingSchool.schedules.add(schedule)
         }

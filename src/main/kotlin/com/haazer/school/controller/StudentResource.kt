@@ -86,4 +86,14 @@ class StudentResource {
                 .build()
         }
     }
+
+//    @PUT
+//    @Path("/{studentId}/parent/{parentId}")
+//    fun assignParentToStudent(
+//        @PathParam("studentId") studentId: Long,
+//        @PathParam("parentId") parentId: Long
+//    ): Response {
+//        val student = studentService.assignParentToStudent(studentId, parentId)
+//        return student?.let { Response.ok(it).build() } ?: Response.status(Response.Status.NOT_FOUND).build()
+//    }
 }

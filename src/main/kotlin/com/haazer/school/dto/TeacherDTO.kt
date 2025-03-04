@@ -18,10 +18,6 @@ class TeacherDTO(
 
     @JsonProperty("field") var field: String,
 
-    @JsonProperty("classRooms") var classRooms: MutableList<ClassRoom> = mutableListOf(),
-
-    @JsonProperty("students") var students: MutableList<Student> = mutableListOf(),
-
     @JsonProperty("createdAt") var createdAt: ZonedDateTime?,
 
     @JsonProperty("modifiedAt") var modifiedAt: ZonedDateTime?

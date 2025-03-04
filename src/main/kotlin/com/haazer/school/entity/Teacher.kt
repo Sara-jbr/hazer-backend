@@ -20,12 +20,6 @@ open class Teacher(
 
     open var field: String,
 
-    @OneToMany(mappedBy = "teacher", cascade = [CascadeType.ALL])
-    open var classRooms: MutableList<ClassRoom> = mutableListOf(),
-
-    @ManyToMany(mappedBy = "teachers", cascade = [CascadeType.ALL])
-    open var students: MutableList<Student> = mutableListOf(),
-
     open var createdAt: String?,
 
     open var modifiedAt: String?,
@@ -37,15 +31,13 @@ open class Teacher(
         lastName = "",
         email = "",
         field = "",
-        classRooms = mutableListOf(),
-        students = mutableListOf(),
         createdAt = null,
         modifiedAt = null
 
     )
 
     override fun toString(): String {
-        return "Teacher(id=$id, firstName=$firstName, lastName=$lastName, email=$email, field='$field', classRooms=$classRooms, students=$students, createdAt=$createdAt, modifiedAt=$modifiedAt)"
+        return "Teacher(id=$id, firstName=$firstName, lastName=$lastName, email=$email, field='$field', createdAt=$createdAt, modifiedAt=$modifiedAt)"
     }
 
 }

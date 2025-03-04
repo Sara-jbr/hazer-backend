@@ -1,10 +1,10 @@
-CREATE TABLE student (
+CREATE TABLE students (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(255),
-    last_name VARCHAR(255),
+    first_name VARCHAR(255) NOT NULL,
+    last_name VARCHAR(255) NOT NULL,
+    student_no VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
-    student_no VARCHAR(50) NOT NULL,
     grade VARCHAR(50) NOT NULL,
-    created_at TIMESTAMP NULL,
-    modified_at TIMESTAMP NULL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

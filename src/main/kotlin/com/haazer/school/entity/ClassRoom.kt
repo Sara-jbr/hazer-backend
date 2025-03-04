@@ -12,12 +12,18 @@ open class ClassRoom(
 
     open var className: String,
 
-    @ManyToOne
-    @JoinColumn(name = "teacher_id", nullable = false) // Set nullable here instead
-    open var teacher: Teacher? = null,
+//    @ManyToOne
+//    @JoinColumn(name = "teacher_id")
+//    open var teacher: Teacher? = null,
+//
+//    @ManyToMany
+//    @JoinTable(
+//        name = "classroom_student",
+//        joinColumns = [JoinColumn(name = "classroom_id")],
+//        inverseJoinColumns = [JoinColumn(name = "student_id")]
+//    )
+//    open var students: MutableList<Student> = mutableListOf(),
 
-    @ManyToMany(mappedBy = "classRooms", cascade = [CascadeType.ALL])
-    open var students: MutableList<Student> = mutableListOf(),
 
     open var createdAt: String?,
 
@@ -26,15 +32,13 @@ open class ClassRoom(
     ) {
     constructor() : this(
         className = "",
-        students = mutableListOf(),
-        teacher = Teacher(),
+//        students = mutableListOf(),
+//        teacher = Teacher(),
         createdAt = null,
         modifiedAt = null
     )
 
     override fun toString(): String {
-        return "ClassRoom(id=$id, className='$className', teacher=$teacher, students=$students, createdAt=$createdAt, modifiedAt=$modifiedAt)"
+        return "ClassRoom(id=$id, className='$className', createdAt=$createdAt, modifiedAt=$modifiedAt)"
     }
-
-
 }

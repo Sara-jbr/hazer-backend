@@ -1,11 +1,13 @@
 package com.haazer.school.dto
 
+import com.fasterxml.jackson.annotation.JsonCreator
+import com.fasterxml.jackson.annotation.JsonIgnore
 import com.fasterxml.jackson.annotation.JsonProperty
 import com.haazer.school.entity.Student
 import jakarta.persistence.*
 import java.time.ZonedDateTime
 
-class ParentDTO(
+class ParentDTO @JsonCreator constructor(
 
     @JsonProperty("id") val id: Long? = null,
 
@@ -21,7 +23,7 @@ class ParentDTO(
 
     @JsonProperty("mobileNumber") var mobileNumber: String,
 
-    @JsonProperty("students") var students: MutableList<Student> = mutableListOf(),
+//    @JsonProperty("students") var students: MutableList<Student> = mutableListOf(),
 
     @JsonProperty("createdAt") var createdAt: ZonedDateTime?,
 

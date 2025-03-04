@@ -4,6 +4,6 @@ CREATE TABLE teacher (
     last_name VARCHAR(255),
     email VARCHAR(255) UNIQUE NOT NULL,
     field VARCHAR(255),
-    created_at TIMESTAMP NULL,
-    modified_at TIMESTAMP NULL
+    created_at VARCHAR(255),
+    modified_at VARCHAR(255)
 );

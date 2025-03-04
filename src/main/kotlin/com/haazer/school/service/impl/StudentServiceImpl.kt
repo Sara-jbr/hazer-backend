@@ -8,6 +8,7 @@ import com.haazer.school.entity.*
 import com.haazer.school.entity.enumeration.GradeLevel
 import com.haazer.school.entity.enumeration.SchoolType
 import com.haazer.school.repository.OwnerRepository
+import com.haazer.school.repository.ParentRepository
 import com.haazer.school.repository.SchoolRepository
 import com.haazer.school.repository.StudentRepository
 import com.haazer.school.service.SchoolService
@@ -28,6 +29,11 @@ class StudentServiceImpl : StudentService {
     @Inject
     lateinit var studentRepository: StudentRepository
 
+    @Inject
+    lateinit var parentRepository: ParentRepository
+
+
+
     @Transactional
     override fun createStudent(studentDTO: StudentDTO): Student {
         logger.info("createStudent - Data: {}", studentDTO)
@@ -37,10 +43,7 @@ class StudentServiceImpl : StudentService {
             lastName = studentDTO.lastName,
             email = studentDTO.email,
             studentNo = studentDTO.studentNo,
-            classRooms = mutableListOf(),
-            teachers = mutableListOf(),
             grade = studentDTO.grade,
-            parents = mutableListOf(),
             createdAt = CommonUtil.gregorianToJalali(ZonedDateTime.now()),
             modifiedAt = null
         )
@@ -48,7 +51,7 @@ class StudentServiceImpl : StudentService {
         studentRepository.persist(student)
         studentRepository.flush()
 
-        logger.info("Student {}: created successfully.", student)
+        logger.info(".{}: دانش آموز با موفقیت ذخیره شد", student)
         return student
     }
 
@@ -78,17 +81,15 @@ class StudentServiceImpl : StudentService {
         existingStudent.lastName = studentDTO.lastName
         existingStudent.email = studentDTO.email
         existingStudent.studentNo = studentDTO.studentNo
-        existingStudent.classRooms = studentDTO.classRooms
         existingStudent.modifiedAt = CommonUtil.gregorianToJalali(ZonedDateTime.now())
         existingStudent.createdAt = existingStudent.createdAt
         existingStudent.grade = studentDTO.grade
-        existingStudent.parents = studentDTO.parents
-        existingStudent.teachers = studentDTO.teachers
+//        existingStudent.parents = studentDTO.parents
 
         studentRepository.persist(existingStudent)
         studentRepository.flush()
 
-        logger.info("Student {}: updated successfully.", existingStudent)
+        logger.info(".{}: دانش آموز با موفقیت ذخیره شد", existingStudent)
         return existingStudent
     }
 }
