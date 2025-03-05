@@ -25,7 +25,6 @@ class ClassRoomResource {
     private val logger: Logger = LoggerFactory.getLogger(ClassRoomResource::class.java)
 
     @POST
-    @Path("/create")
     fun createClassRoom(classRoom: ClassRoomDTO): Response {
         logger.info("REST request to create a classroom {} :", classRoom)
 
@@ -36,7 +35,6 @@ class ClassRoomResource {
     }
 
     @GET
-    @Path("/")
     fun getAllClassRooms(): Response {
         logger.info("REST request to get all classrooms")
         val classrooms = classRoomService.getAllClassRooms()
@@ -90,7 +88,7 @@ class ClassRoomResource {
     }
 
     @POST
-    @Path("{classroomId}/assign-student/{studentId}")
+    @Path("/{classroomId}/assign-student/{studentId}")
     fun assignStudentToClassroom(
         @PathParam("classroomId")classroomId: Long,
         @PathParam("studentId") studentId: Long
@@ -100,7 +98,7 @@ class ClassRoomResource {
     }
 
     @POST
-    @Path("{classroomId}/assign-teacher/{teacherId}")
+    @Path("/{classroomId}/assign-teacher/{teacherId}")
     fun assignTeacherToClassroom(
         @PathParam("classroomId")classroomId: Long,
         @PathParam("teacherId") teacherId: Long
